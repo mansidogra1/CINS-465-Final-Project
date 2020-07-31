@@ -1,6 +1,9 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
 <head>
+    <script data-semver="1.2.28" src="https://code.angularjs.org/1.2.28/angular.js" data-require="angular.js@1.2.x">
+    </script>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -9,44 +12,18 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
     <title>Login Here</title>
-</head>
-<body>
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <title>Login V10</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!--===============================================================================================-->
-        <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+        <link rel="icon" type="image/png" href="{% static 'images/icons/favicon.ico' %}" />
         <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
-        <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-        <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
-        <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-        <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
-        <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
-        <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
-        <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
-        <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="css/util.css">
-        <link rel="stylesheet" type="text/css" href="css/main.css">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
         <!--===============================================================================================-->
     </head>
-    <body>
-
-        <div id="legend">
-            <article class="card-body mx-auto" style="max-width: 800px;"><h1>LOGIN HERE AFTER REGISTRATION</h1></article>
-        </div>
+    <body class="login-page" ng-app='myapp' ng-controller='myctrl'>
 
         <div class="limiter">
+            <h3>LOGIN</h3>
             <div class="container-login500">
                 <div class="wrap-login500 p-t-50 p-b-100">
                     <form class="login500-form validate-form flex-sb flex-w">
@@ -54,35 +31,32 @@
                         </span>
 
 
-                        <div class="wrap-input500 validate-input m-b-16" data-validate="Username is required">
-                            <input class="input500" type="text" name="username" placeholder="Username">
-                            <span class="focus-input100"></span>
+                        <div class="control-group input-group">
+
+                            <!-- Username -->
+                            <label class="control-label" for="username">Username</label>
+                            <div class="controls" style="margin-left: 10px;">
+                                <input style="width: 230px;height: 40px;" ng-model="login_user" type="text" id="username" name="username" placeholder="" class="input-xlarge">
+                            </div>
                         </div>
 
-
-                        <div class="wrap-input100 validate-input m-b-16" data-validate="Password is required">
-                            <input class="input100" type="password" name="pass" placeholder="Password">
-                            <span class="focus-input100"></span>
+                        <div class="control-group input-group">
+                            <!-- Password-->
+                            <label class="control-label" for="password">Password</label>
+                            <div class="controls" style="margin-left: 15px;">
+                                <input style="width: 230px;height: 40px;" ng-model="login_pass" type="password" id="password" name="password" placeholder="" class="input-xlarge">
+                            </div>
                         </div>
 
                         <div class="flex-sb-m w-full p-t-3 p-b-24">
-                            <div class="contact500-form-checkbox">
-                                <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-                                <label class="label-checkbox100" for="ckb1">
-                                    Remember me
-                                </label>
-                            </div>
 
-                            <div>
-                                <a href="#" class="txt-center">
-                                    Don't have an account?
-                                <a href = "/register">Register</a>
-                                </a>
+                            <div style="margin-bottom: 15px;">
+                                <a href = "{% url 'register' %}">Don't have an account? Register</a>
                             </div>
                         </div>
 
                         <div class="container-login100-form-btn m-t-17">
-                            <button class="login100-form-btn">
+                            <button ng-click="login();" class="login-btn">
                                 Login
                             </button>
                         </div>
@@ -100,5 +74,6 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<script type="text/javascript" src="{% static 'js/chico.js' %}"></script>
 </body>
 </html>

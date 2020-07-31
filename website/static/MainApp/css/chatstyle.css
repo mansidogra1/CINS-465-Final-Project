@@ -1,0 +1,383 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+    font-family: sans-serif;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* Header */
+
+header {
+    padding: 20px 0;
+    margin: 0 0 40px 0;
+    background: #5778C4;
+    color: #fff;
+    display: none;
+}
+    header h1 {
+        width: 800px;
+        margin: 0 auto;
+        font-size: 40px;
+    }
+    header a {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        color: #fff;
+    }
+
+/* Body */
+section {
+    width: 800px;
+    margin: 0 auto;
+}
+
+p {
+    margin: 1em 0 2em 0;
+}
+
+.empty {
+    color: #666;
+    font-style: italic;
+}
+
+.rooms li {
+    padding: 5px 7px;
+    background: #def;
+    display: inline;
+    margin: 5px 2px;
+    border: 1px solid #bcd;
+    border-radius: 2px;
+    cursor: pointer;
+}
+    .rooms li.joined {
+        background: #371ff6;
+        border: 1px solid #371ff6;
+    }
+
+
+
+  
+    #chats h2 {
+        color: #333;
+        margin: 2px 0 5px 0;
+        font-weight: bold;
+    }
+    #chats .messages {
+        height: 290px;
+        overflow: auto;
+        background: #fff;
+        margin: 2px 0 5px 0;
+        padding-top: 25px;
+        padding-left: 20px;
+    
+       
+    }
+    #chats .username {
+        display: inline-block;
+        color: #C07A36;
+        width: 100px;
+        font-weight: bold;
+        line-height: 21px;
+    }
+    #chats .contextual-message{
+        text-align: center;
+        margin: 5px 5px 5px 5px;
+    }
+    #chats .text-muted {
+        opacity: .6;
+        font-style: italic;
+    }
+    #chats .text-danger {
+        color: #a94442;
+        font-weight: bold;
+    }
+    #chats .text-warning {
+        color: #DCAD5C;
+        font-weight: bold;
+        font-style: italic;
+    }
+
+
+
+    li.room-link {
+        position: fixed;
+        bottom: 40px;
+        right: 40px;
+        background: #371ff6;
+        width: 55px;
+        height: 55px;
+        border-radius: 5px;
+        color: #2E2E38;
+        padding: 12px;
+        cursor: pointer;
+    }
+    li.room-link img {
+        width: 50px;
+        display: block;
+        position: relative;
+        left: 5px;
+        top: 5px;
+    }
+
+    .card-header {
+        color: #fff;
+        display: -webkit-box;
+        display: block;
+        -webkit-box-align: center;
+        align-items: center;
+        -webkit-box-pack: justify;
+        justify-content: space-between;
+        background-color: rgb(56, 32, 247);
+        /* height: 54px; */
+        padding: 0 20px;
+        width: 100%;
+        cursor: pointer;
+        -webkit-transition: background-color 0.2s ease;
+        transition: background-color 0.2s ease;
+        text-transform: capitalize;
+        padding: 30px 16px 35px;
+        border-radius: 8px 8px 0px 0px;
+        padding-left: 46px;
+        background-color: #3820f7;
+        background-image: url(https://bot.honohr.com/pulsebot/static/survey_app/img/mess_img/cubes.png);
+        max-width: 380px;
+        margin-top: 60px;
+    }
+
+
+    @import url('https://fonts.googleapis.com/css?family=Lato:400,400i,700,900&display=swap');
+    html,body{
+    font-family: 'Lato', sans-serif !important;
+    font-size: 16px;
+    background: linear-gradient(90deg,#fff 20px,transparent 1%) center,linear-gradient(#fff 20px,transparent 1%) center,rgba(65,72,89,.1);
+    background-size: 22px 22px;
+    }
+
+    #chats {
+    
+        max-width: 100%;
+    }
+    .body-chats-style {
+        box-shadow: 0 0px 35px -20px rgba(0, 0, 0, 0.68);
+    }
+    .chat-icon-box img {
+        width: 25px;
+    }
+
+   .head-chat-card{
+    max-width: 800px !important;
+    float: right !important;
+    position: relative !important;
+    right: 140px !important;
+    width: unset !important;
+    margin: unset !important;
+    top: -30px;
+   }
+
+
+   .send-chat{
+    display: block;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    height: 45px;
+    padding: 5px 20px;
+    border-top: 1px solid #ddd;
+    background-color: #fff;
+    width: 400px;
+    border-left: 0px !important;
+   }
+   .fa-paper-plane {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    font-size: 18px;
+    color: #3820f7;
+}
+button.fa.fa-paper-plane {
+    background: transparent;
+    border: none;
+}
+
+input.send-chat:focus {
+    outline: none;
+}
+p.head-para {
+    color: rgba(255,255,255,.7);
+    font-size: 14px;
+    line-height: 20px;
+    max-width: 300px;
+}
+
+span.online-chat {
+    font-size: 12px;
+    float: left;
+    position: relative;
+    top: 50px;
+    color: #00a65a;
+    font-weight: 600;
+    right: 20px;
+}
+.message.me-send {
+    float: right;
+    position: relative;
+    right: 20px;
+    clear: both;
+}
+div.body {
+    border-style: solid;
+    border-width: 0;
+    border-radius: 3px;
+    box-shadow: 0 2px 2px 1px rgba(0,0,0,.1);
+    color: #484848;
+    background-color: #f5f5f5;
+    border-color: #f5f5f5;
+    padding: 10px;
+    
+    font-size: 13px;
+}
+
+.message.others-msg .body {
+    background: #f5f5f5;
+    color: #333;
+    float: left;
+    clear: both;
+    max-width: 310px;
+    word-break: break-all;
+    line-height: 20px;
+    margin-top: 10px;
+}
+.message.me-send .body {
+    background: #3820f7;
+    color: #fff;
+    margin-bottom: 3px;
+    clear: both;
+    max-width: 310px;
+    word-break: break-all;
+    line-height: 20px;
+    margin-bottom: 7px;
+}
+.message.others-msg .body{
+    margin-bottom: 6px;  
+}
+@media only screen and (max-width: 768px) {
+    .head-chat-card {
+        float: left !important;
+        position: relative !important;
+        right: -8px !important;
+        width: unset !important;
+        margin: unset !important;
+        top: -30px;
+        width: 100% !important;
+        max-width: 91% !important;
+    }
+    .card-header{
+        padding-left: 22px;
+    }
+    #chats .messages{
+        width: 100% !important;
+        border:1px solid #eee;
+    }
+    body{
+        overflow: hidden;
+    }
+    .send-chat{
+        width: 304px;
+    }
+    .fa-paper-plane{
+        right: -28px;
+    }
+    .body-chats-style{
+        box-shadow: none;
+    }
+    li.room-link.joined {
+        opacity: 0;
+    }
+    .card-header{
+        padding: 30px 0px 35px !important;
+    }
+    .card-header {
+        padding: 30px 0px 35px !important;
+        position: relative;
+        padding-left: 20px !important;
+    }
+    span.online-chat {
+        right: 15px;
+        font-size: 14.2px;
+        font-weight: normal;
+    }
+    .send-chat {
+        width: 100%;
+        max-width: 95%;
+    }
+    .fa-paper-plane {
+        right: -10px;
+    }
+    #chats .messages{
+        height: 300px;
+    }
+    .sub-hola strong {
+        font-size: 22px;
+        font-weight: 200;
+        letter-spacing: 1px;
+    }
+    .chat-icon-box {
+        margin-bottom: 8px;
+    }
+    p.head-para {
+        color: rgba(255,255,255,.7);
+        font-size: 15px;
+        line-height: 21px;
+        max-width: 300px;
+    }
+    section.head-chat-card {
+        margin-top: 60px;
+    }
+   
+}

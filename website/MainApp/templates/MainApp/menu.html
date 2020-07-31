@@ -1,0 +1,151 @@
+	{% load static %}
+	<!DOCTYPE html>
+	<html lang="zxx" class="no-js">
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js">
+		</script>
+		<!-- Mobile Specific Meta -->
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<!-- Favicon-->
+		<link rel="shortcut icon" href="img/fav.png">
+		<!-- Author Meta -->
+		<meta name="author" content="colorlib">
+		<!-- Meta Description -->
+		<meta name="description" content="">
+		<!-- Meta Keyword -->
+		<meta name="keywords" content="">
+		<!-- meta character set -->
+		<meta charset="UTF-8">
+		<!-- Site Title -->
+		<title>Menu</title>
+
+		<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet"> 
+			<!--
+			CSS
+			============================================= -->
+			<link rel="stylesheet" href="{% static 'css/linearicons.css' %}">
+			<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+			<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+			<link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+			<link rel="stylesheet" href="{% static 'css/jquery-ui.css' %}">				
+			<link rel="stylesheet" href="{% static 'css/nice-select.css' %}">							
+			<link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
+			<link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}">				
+			<link rel="stylesheet" href="{% static 'css/main.css' %}">
+		</head>
+		<body ng-app='myapp' ng-controller='myctrl' ng-init="getcid(); ShowButtons(); GetCategory();GetProduct();" ng-cloak>	
+			<header id="header">
+
+				<div class="container main-menu">
+					<div class="row align-items-center justify-content-center d-flex">
+						<nav id="nav-menu-container">
+							<ul class="nav-menu">
+								<li><a href="{% url 'index' %}">Home</a></li>
+								<li ng-show="hider_data"><a href="{% url 'menu' %}">Menu</a></li>
+								<li ng-show="hider_data"><a href="{% url 'chat' %}">Chat</a></li>
+								<li ng-show="show_data"><a href="{% url 'register' %}">Register</a></li>
+								<li ng-show="show_data"><a href="{% url 'login' %}">Login</a></li>
+								<li ng-show="hider_data"><a href="/logout/">Logout</a></li>
+							</ul>
+						</nav><!-- #nav-menu-container -->
+					</div>
+				</div>
+			</header><!-- #header -->
+			
+			<!-- start banner Area -->
+			<section class="about-banner relative">
+				<div class="overlay overlay-bg"></div>
+				<div class="container">				
+					<div class="row d-flex align-items-center justify-content-center">
+						<div class="about-content col-lg-12">
+							<h1 class="text-white">
+								Menus				
+							</h1>	
+							<p class="text-white link-nav"><a href="{% url 'index' %}">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="#"> Menus</a></p>
+						</div>	
+					</div>
+				</div>
+			</section>
+			<!-- End banner Area -->			
+
+			<!-- Start menu-area Area -->
+			{% verbatim %}
+
+            <section class="menu-area section-gap" id="menu" ng-if="products.length > 0">
+				
+                <div class="container">
+					<div class="row d-flex justify-content-center">
+						<div class="menu-content pb-70 col-lg-8">
+							<div class="title text-center">
+								<h1 class="mb-10">What kind of Foods we serve for you</h1>
+								<p>Who are in extremely love with eco friendly system.</p>
+							</div>
+						</div>
+					</div>	
+
+					<ul class="filter-wrap filters col-lg-12 no-padding">
+						<li ng-class="{'active': all_pdts}" ng-click="AllProductDetails();">All Menu</li>
+						<li ng-class="{'active': (c.id == c_id) && !all_pdts}" ng-click="getParticularPdt(c.id)" ng-repeat="c in category_data">{{c.name}}</li>
+					</ul>
+                    
+                    <div class="filters-content">
+                        <div class="row grid">
+                            <div class="col-md-6 all breakfast" ng-repeat="item in products" ng-if="item.quantity > 0">
+								<div class="single-menu">
+									<div class="title-wrap d-flex justify-content-between">
+										<h4>{{item.name}}</h4>
+										<h4 class="price">${{item.price}}</h4>
+									</div>
+									<div class="counter-area">
+										<div>
+											<p>Total Quantity: <strong>{{item.quantity}}</strong></p>
+										</div>
+										<div class="number" ng-if="item.current_quantity > 0">
+											<button class="counter-minus" ng-click="decreaseItem(item.id)">-</button>
+											<input class="conter-input" type="text" ng-value="item.current_quantity" readonly/>
+											<button class="counter-plus" ng-click="increaseItem(item.id)">+</button>
+										</div>
+										<div ng-if="item.current_quantity === 0">
+											<button ng-click="addItem(item.id);" class="add-btn">
+												Add
+											</button>
+										</div>
+									</div>									
+								</div>					                               
+                            </div>                           
+                        </div>
+					</div>
+                    
+                </div>
+			</section>
+			<div class="bottom-btns" ng-if="showClear()">
+				<div class="total-price">
+					<h4>Total Price: ${{totalPrice()}}</h4>
+				</div>
+				<div>
+					<button ng-click="clearAll();"  class="clear-all-btn">Clear All</button>
+					<button ng-click="buyNow();" class="buy-now-btn">Buy Now</button>
+				</div>
+				
+			</div>
+			<div class="loader" ng-if="products.length === 0"></div>
+            <!-- End menu-area Area -->						
+			{% endverbatim %}
+			<script src="{% static 'js/vendor/jquery-2.2.4.min.js' %}"></script>
+			<script src="{% static 'js/popper.min.js' %}"></script>
+			<script src="{% static 'js/vendor/bootstrap.min.js' %}"></script>			
+			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>		
+ 			<script src="{% static 'js/jquery-ui.js' %}"></script>					
+  			<script src="{% static 'js/easing.min.js' %}"></script>			
+			<script src="{% static 'js/hoverIntent.js' %}"></script>
+			<script src="{% static 'js/superfish.min.js' %}"></script>	
+			<script src="{% static 'js/jquery.ajaxchimp.min.js' %}"></script>
+			<script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>						
+			<script src="{% static 'js/jquery.nice-select.min.js' %}"></script>					
+			<script src="{% static 'js/owl.carousel.min.js' %}"></script>			
+            <script src="{% static 'js/isotope.pkgd.min.js' %}"></script>								
+			<script src="{% static 'js/mail-script.js' %}"></script>	
+			<script src="{% static 'js/main.js' %}"></script>	
+			<script src="{% static 'js/chico.js' %}"></script>	
+		</body>
+	</html>

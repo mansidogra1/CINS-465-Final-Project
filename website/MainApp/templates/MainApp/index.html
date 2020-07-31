@@ -1,9 +1,9 @@
-﻿<!doctype html>
+﻿{% load static %}
+<!doctype html>
 <html lang="en">
 <head>
-
-    {% load static %}
-
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js">
+    </script>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -14,7 +14,7 @@
 
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{% static 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
     <title>FOOD DELIVERY AT HOME/title>
 </head>
@@ -28,7 +28,7 @@
     <!-- Mobile Specific Meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Favicon-->
-    <link rel="shortcut icon" href="{static 'MainApp/img/fav.png' %}">
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
     <!-- Author Meta -->
     <meta name="author" content="colorlib">
     <!-- Meta Description -->
@@ -40,54 +40,33 @@
     <!-- Site Title -->
     <title>Macro</title>
 
-    <link href="{% static 'https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet' %}">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
     <!--
     CSS
     ============================================= -->
-    <link rel="stylesheet" href="{% static 'MainApp/css/linearicons.css' %}">
-    <link rel="stylesheet" href="{% static 'MainApp/css/font-awesome.min.css' %}">
-    <link rel="stylesheet" href="{% static 'MainApp/css/bootstrap.css' %}">
-    <link rel="stylesheet" href="{% static 'MainApp/css/magnific-popup.css' %}">
-    <link rel="stylesheet" href="{% static 'MainApp/css/jquery-ui.css' %}">
-    <link rel="stylesheet" href="{% static 'MainApp/css/nice-select.css' %}">
-    <link rel="stylesheet" href="{% static 'MainApp/css/animate.min.css' %}">
-    <link rel="stylesheet" href="{% static 'MainApp/css/owl.carousel.css' %}">
-    <link rel="stylesheet" href="{% static 'MainApp/css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/linearicons.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'css/jquery-ui.css' %}">
+    <link rel="stylesheet" href="{% static 'css/nice-select.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
 </head>
-<body>
+<body ng-app='myapp' ng-controller='myctrl' ng-init="ShowButtons(); GetCategory();">
     <header id="header">
-        <div class="header-top">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div id="top-banner">
-                        <a href="index.html"><img src="{static 'MainApp/img/top-banner.jpg" alt="" title="" /></a>
-                    </div>
-                </div>
-            </div>
-        </div>
+
         <div class="container main-menu">
             <div class="row align-items-center justify-content-center d-flex">
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
-                        <li><a href="{static 'MainApp/index.html">Home</a></li>
-                        <li><a href="{static 'MainApp/about.html">Menu</a></li>
-                        <ul>
-
-                            <li><a href="{static 'MainApp/blog-home.html">From Student</a></li>
-                            <li><a href="{static 'MainApp/blog-single.html">From Faculty</a></li>
-                        </ul>
-                        </li>
-                        <li class="menu-has-children">
-                            <a href="">Chat</a>
-                            <ul>
-                               
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="menu-has-children"><a href="/register">register</a>
-                        </li>
-                        <li class="menu-has-children"><a href="/login">login</a>
-                        </li>
+                        <li ><a href="{% url 'index' %}">Home</a></li>
+                        <li ng-show="hider_data"><a href="{% url 'menu' %}">Menu</a></li>
+                        <li ng-show="hider_data"><a href="{% url 'chat' %}">Chat</a></li>
+                        <li ng-show="show_data"><a href="{% url 'register' %}">Register</a></li>
+                        <li ng-show="show_data"><a href="{% url 'login' %}">Login</a></li>
+                        <li ng-show="hider_data"><a href="/logout/">Logout</a></li>
                     </ul>
                 </nav><!-- #nav-menu-container -->
             </div>
@@ -118,17 +97,16 @@
                     <p>
                         <h3>This is a food delivery website for Chico State students. Here you can buy food items on discounted prices. Find a Chico Store near you and order online for free.</h3>
                     </p>
-                    <a href="#" class="primary-btn text-uppercase">Read More About Us</a>
                 </div>
                 <div class="col-lg-6 home-about-right">
-                    <img class="img-fluid" src="img/top-banner.jpg" alt="">
+                    <img class="img-fluid" src="{% static 'img/top-banner.jpg' %}" alt="">
                 </div>
             </div>
         </div>
     </section>
     <!-- End home-about Area -->
     <!-- Start menu-area Area -->
-    <section class="menu-area section-gap" id="menu">
+    <section class="menu-area section-gap" id="menu" ng-if="category_data.length > 0">
         <div class="container">
             <div class="row d-flex justify-content-center">
                 <div class="menu-content pb-70 col-lg-8">
@@ -142,100 +120,51 @@
                 <li><h3>THERE IS NO SINCERER LOVE THAN THE LOVE OF FOOD</h></li>
                 
             </ul>
+            {%verbatim%}
 
             <div class="filters-content">
                 <div class="row grid">
-                    <div class="col-md-6 all breakfast">
+                    <div ng-repeat="category in category_data" class="col-md-6 all breakfast">
                         <div class="single-menu">
                             <div class="title-wrap d-flex justify-content-between">
-                                <h4>Bulk Flour</h4>
+                                <h4>{{category.name}}</h4>
                             </div>
-                            <p>
-                                Click here to checkout different kinds of flour.
+                            <p class="categories-click" ng-click="openMenu(category.id)">
+                                <strong>Click here</strong> to checkout different kinds of {{category.name}}.
                             </p>
                         </div>
                     </div>
-                    <div class="col-md-6 all dinner">
-                        <div class="single-menu">
-                            <div class="title-wrap d-flex justify-content-between">
-                                <h4>Bulk Sugar</h4>
-                            </div>
-                            <p>
-                                Click here to checkout different kinds of sugar.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-md-6 all budget-meal">
-                        <div class="single-menu">
-                            <div class="title-wrap d-flex justify-content-between">
-                                <h4>Breading and Mixes</h4>
-                            </div>
-                            <p>
-                                Click here to checkout different kinds of Breading and Mixes. 
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-md-6 all breakfast">
-                        <div class="single-menu">
-                            <div class="title-wrap d-flex justify-content-between">
-                                <h4>Bases, Gravies, and Broths</h4>                             
-                            </div>
-                            <p>
-                                Click here to checkout different kinds of Bases, Gravies, and Broth. 
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-md-6 all lunch">
-                        <div class="single-menu">
-                            <div class="title-wrap d-flex justify-content-between">
-                                <h4>Grains and Beans</h4>
-                            </div>
-                            <p>
-                                Click here to checkout different kinds of Grains and Beans.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-md-6 all buffet">
-                        <div class="single-menu">
-                            <div class="title-wrap d-flex justify-content-between">
-                                <h4>Coffee</h4>
-                            </div>
-                            <p>
-                                Click here to checkout different kinds of Coffee.
-                            </p>
-                        </div>
-                        </div>
-                    <div class="col-md-12 all buffet" style="margin:4%;">
-                            <div class="container">
-                                <div class="row fullscreen align-items-center justify-content-between">
-                                    <a href="#" class="primary-btn text-uppercase">Click Here to View Full Menu</a>
+                    {%endverbatim%}
+                    <div class="col-md-12 all buffet" style="margin-top: 20px;">
+                            <div>
+                                <div class="row fullscreen align-items-center justify-content-between" style="height: 0px !important;">
+                                    <a href="{% url 'menu' %}" class="primary-btn text-uppercase">Click Here to View Full Menu</a>
                                 </div>
                             </div>
                         </div>
+                </div></div></div>
    </section>
-                    </div>
-                    </div>
-                    </div>
 
-        </div>
+
     </section>
     <!-- End menu-area Area -->
    
-   
-    <script src="js/vendor/jquery-2.2.4.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/vendor/bootstrap.min.js"></script>
+    <script src="{% static 'js/vendor/jquery-2.2.4.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/vendor/bootstrap.min.js' %}"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
-    <script src="js/jquery-ui.js"></script>
-    <script src="js/easing.min.js"></script>
-    <script src="js/hoverIntent.js"></script>
-    <script src="js/superfish.min.js"></script>
-    <script src="js/jquery.ajaxchimp.min.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/jquery.nice-select.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/isotope.pkgd.min.js"></script>
-    <script src="js/mail-script.js"></script>
-    <script src="js/main.js"></script>
+    <script src="{% static 'js/jquery-ui.js' %}"></script>
+    <script src="{% static 'js/easing.min.js' %}"></script>
+    <script src="{% static 'js/hoverIntent.js' %}"></script>
+    <script src="{% static 'js/superfish.min.js' %}"></script>
+    <script src="{% static 'js/jquery.ajaxchimp.min.js' %}"></script>
+    <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'js/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'js/mail-script.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/chico.js' %}"></script>
+
 </body>
 </html>

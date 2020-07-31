@@ -22,5 +22,5 @@ admin.site.index_title = "Student's Special Discount"
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('MainApp.urls'))
+    path('', include('MainApp.urls'),name='index')
 ]
